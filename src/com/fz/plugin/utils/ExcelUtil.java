@@ -75,7 +75,7 @@ public class ExcelUtil {
                 if (firstRowCurCell != null) {
                     final String languageCode = languageCode(ParseUtil.toString(getCellValue(firstRowCurCell)));
                     final String cellValue = ParseUtil.toString(cellValue(row, cell));
-                    if (StringUtils.isNotEmpty(cellValue) && StringUtils.isNotEmpty(languageCode)) {
+                    if (StringUtils.isNotEmpty(cellValue) && StringUtils.isNotEmpty(languageCode) && !"name".equalsIgnoreCase(valueKey)) {
                         addValue(datas, languageCode, new ElementBean(valueKey, cellValue));
                     }
                 }
