@@ -422,7 +422,8 @@ public class XmlUtil {
                         //只有当translatable ==false时才抛弃
                         if (translatable == null || !hasTranslatable || ParseUtil.toBoolean(translatable)) {
                             final String name = element.getAttribute("name");
-                            final String text = Utils.removeDoubleQuotes(element.getTextContent());
+                            //final String text = Utils.removeDoubleQuotes(element.getTextContent());
+                            final String text = StringUtils.isEmpty(element.getTextContent()) ? "" : element.getTextContent();
                             if (!StringUtils.isEmpty(text)) {
                                 final MultiLanguageBean bean = new MultiLanguageBean();
                                 bean.setLanguage("");
