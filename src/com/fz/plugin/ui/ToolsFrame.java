@@ -413,7 +413,7 @@ public class ToolsFrame extends JFrame {
         String sheet1 = jtWorksheetName.getText();
         LOG.info("ToolsSettings>>sheet1" + sheet1);
         if (StringUtils.isEmpty(sheet1)) {
-            sheet1 = "Sheet1";
+            sheet1 = "Sheet0";
         }
         Workbook finalWb = wb;
         String finalSheet = sheet1;

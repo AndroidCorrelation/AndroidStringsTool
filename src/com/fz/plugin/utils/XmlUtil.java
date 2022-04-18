@@ -1,6 +1,5 @@
 package com.fz.plugin.utils;
 
-import com.fz.plugin.FileFinder;
 import com.fz.plugin.bean.ElementBean;
 import com.fz.plugin.bean.MultiLanguageBean;
 import com.fz.plugin.bean.MutableTreeNode;
@@ -58,7 +57,11 @@ public class XmlUtil {
     }
 
     private static String createValuesFile(String lang) {
-        return "values-" + checkLanguage(lang);
+        if("en".equals(checkLanguage(lang))) {
+            return "values";
+        } else {
+            return "values-" + checkLanguage(lang);
+        }
     }
 
     static String checkLanguage(String lang) {
@@ -366,7 +369,8 @@ public class XmlUtil {
     }
 
     public static Map<String, List<MultiLanguageBean>> paresXmlMultiLanguage(File rootDir, boolean isOnlyMainFolder) {
-        Map<String, List<MultiLanguageBean>> datas = new HashMap<>();
+        Map<String, List<MultiLanguageBean>> datas = new LinkedHashMap<>();
+        datas.put("en", new ArrayList<>());
         try {
             String mainFolderPattern = "**/" + Configs.STRINGS_MAIN_RES_PATH_INCLUDE;
             List<String> mainFolderFileNames = FileUtils.scanFiles(rootDir, mainFolderPattern);
@@ -376,7 +380,11 @@ public class XmlUtil {
                     final File parentFile = remoteFile.getParentFile();
                     final String parentFileName = parentFile.getName();
                     final String languageCode = splitLanguage(parentFileName);
-                    datas.put(languageCode, createMultiLanguage(languageCode, remoteFile));
+                    if("en".equals(languageCode)) {
+                        datas.replace(languageCode, createMultiLanguage(languageCode, remoteFile));
+                    } else {
+                        datas.put(languageCode, createMultiLanguage(languageCode, remoteFile));
+                    }
                 }
             } else {
                 String buildFolderPattern = "**/" + Configs.STRINGS_BUILD_PATH_INCLUDE;

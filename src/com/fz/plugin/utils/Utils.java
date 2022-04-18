@@ -38,8 +38,8 @@ public class Utils {
     }
 
     public static void showMessageDialog(Project project, String title, String message) {
-        invokeLater(() -> Messages.showMessageDialog(project, message,
-                title, Messages.getInformationIcon()));
+        invokeLater(() -> Messages.showInfoMessage(project, message,
+                title));
     }
 
     public static void invokeLater(Runnable runnable) {

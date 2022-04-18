@@ -57,7 +57,7 @@ public class ExcelUtil {
      * @return
      */
     public static Map<String, List<ElementBean>> parseExcelForMap2(Sheet sheet) {
-        Map<String, List<ElementBean>> datas = new HashMap<>();
+        Map<String, List<ElementBean>> datas = new LinkedHashMap<>();
         Row firstRow = null;
         for (Row row : sheet) {
             if (firstRow == null) {
@@ -218,7 +218,7 @@ public class ExcelUtil {
     }
 
     private static Map<String, List<MultiLanguageBean>> convertData(Map<String, List<MultiLanguageBean>> datas) {
-        Map<String, List<MultiLanguageBean>> convertData = new HashMap<>();
+        Map<String, List<MultiLanguageBean>> convertData = new LinkedHashMap<>();
         Iterator<String> keys = datas.keySet().iterator();
         while (keys.hasNext()) {
             final String language = keys.next();
